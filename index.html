@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>البيت الوثير للتطوير العقاري</title>
+</head>
+<body>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brick:#7B2D2D;--brick-light:#9E4040;--brick-dark:#5A1E1E;
+  --gold:#C9A84C;--gold-light:#E8C97A;
+  --charcoal:#2C2C2C;--charcoal2:#3D3D3D;
+  --gray-bg:#F5F3F0;--gray-mid:#E8E4DF;--gray-text:#6B6560;
+  --white:#FFFFFF;--border:#D4CFC9;
+}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;direction:rtl;background:var(--gray-bg);color:var(--charcoal);font-size:15px;line-height:1.7}
+.site{min-height:100vh;display:flex;flex-direction:column}
+
+/* HEADER */
+.header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 2rem}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
+.logo{font-size:18px;font-weight:600;color:var(--brick);white-space:nowrap;cursor:pointer}
+.logo span{color:var(--charcoal);font-weight:300}
+.nav{display:flex;gap:0;list-style:none;flex:1;justify-content:center}
+.nav li a{padding:0 14px;color:var(--gray-text);text-decoration:none;font-size:13.5px;white-space:nowrap;cursor:pointer;transition:color .2s}
+.nav li a:hover{color:var(--brick)}
+.header-btns{display:flex;gap:8px;align-items:center}
+.btn{padding:8px 18px;border-radius:6px;font-size:13.5px;cursor:pointer;transition:all .2s;font-family:inherit;font-weight:500;white-space:nowrap;border:none}
+.btn-primary{background:var(--brick);color:var(--white)}
+.btn-primary:hover{background:var(--brick-light)}
+.btn-outline{background:transparent;color:var(--brick);border:1.5px solid var(--brick)}
+.btn-outline:hover{background:var(--brick);color:var(--white)}
+.btn-sm{padding:6px 14px;font-size:13px}
+.btn-gold{background:var(--gold);color:var(--charcoal);border:none}
+.btn-gold:hover{background:var(--gold-light)}
+
+/* FLOATING WHATSAPP */
+.wa-float{position:fixed;bottom:24px;left:24px;z-index:200;background:#25D366;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)}
+
+/* PAGES */
+.page{display:none;flex:1}
+.page.active{display:block}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--brick-dark) 0%,var(--brick) 60%,var(--charcoal2) 100%);color:var(--white);padding:80px 2rem 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:800px;margin:0 auto;text-align:center;position:relative}
+.hero h1{font-size:36px;font-weight:600;line-height:1.4;margin-bottom:16px}
+.hero p{font-size:16px;opacity:.85;max-width:540px;margin:0 auto 32px;line-height:1.8}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-btns .btn{padding:12px 24px;font-size:15px}
+.btn-white{background:var(--white);color:var(--brick);border:none}
+.btn-white:hover{background:var(--gray-bg)}
+.btn-white-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.6)}
+.btn-white-outline:hover{background:rgba(255,255,255,.1)}
+
+/* SEARCH BAR */
+.search-section{background:var(--white);border-bottom:1px solid var(--border);padding:20px 2rem}
+.search-inner{max-width:1200px;margin:0 auto}
+.search-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;align-items:end}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:12px;color:var(--gray-text);font-weight:500}
+.field select,.field input{padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--charcoal);outline:none}
+.field select:focus,.field input:focus{border-color:var(--brick)}
+
+/* SECTIONS */
+.section{padding:56px 2rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-dark{background:var(--charcoal);color:var(--white)}
+.section-dark .section-subtitle{color:rgba(255,255,255,.6)}
+.section-mid{background:var(--gray-mid)}
+.section-title{font-size:26px;font-weight:600;margin-bottom:8px}
+.section-subtitle{color:var(--gray-text);font-size:15px;margin-bottom:36px}
+.divider{width:48px;height:3px;background:var(--brick);margin-bottom:24px;border-radius:2px}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--white);border-radius:10px;border:1px solid var(--border);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.card-img{height:180px;background:linear-gradient(135deg,var(--gray-mid),var(--border));display:flex;align-items:center;justify-content:center;color:var(--gray-text);font-size:13px;position:relative}
+.card-img-1{background:linear-gradient(135deg,#C9A84C22,#7B2D2D22)}
+.card-img-2{background:linear-gradient(135deg,#2C2C2C22,#C9A84C22)}
+.card-img-3{background:linear-gradient(135deg,#7B2D2D22,#2C2C2C22)}
+.card-img-label{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.5);color:#fff;padding:3px 10px;border-radius:4px;font-size:11px}
+.card-body{padding:16px}
+.card-title{font-size:16px;font-weight:600;margin-bottom:6px}
+.card-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.badge{padding:3px 10px;border-radius:4px;font-size:12px;font-weight:500}
+.badge-green{background:#E8F5E9;color:#2E7D32}
+.badge-amber{background:#FFF8E1;color:#E65100}
+.badge-blue{background:#E3F2FD;color:#1565C0}
+.badge-gray{background:var(--gray-mid);color:var(--gray-text)}
+.badge-brick{background:#7B2D2D18;color:var(--brick)}
+.card-text{font-size:13.5px;color:var(--gray-text);margin-bottom:14px;line-height:1.6}
+.card-btns{display:flex;gap:8px;flex-wrap:wrap}
+
+/* VALUES GRID */
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.value-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:20px;border-top:3px solid var(--brick)}
+.value-icon{width:36px;height:36px;background:var(--brick);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--white);font-size:18px}
+.value-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.value-desc{font-size:13px;color:var(--gray-text);line-height:1.6}
+
+/* ABOUT CARDS */
+.about-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:24px}
+.about-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:24px}
+.about-card h3{font-size:15px;font-weight:600;color:var(--brick);margin-bottom:10px}
+.about-card p{font-size:13.5px;color:var(--gray-text);line-height:1.7}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.service-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:24px;transition:background .2s}
+.service-card:hover{background:rgba(255,255,255,.1)}
+.service-num{font-size:28px;font-weight:600;color:var(--gold);margin-bottom:8px;line-height:1}
+.service-title{font-size:14px;font-weight:600;margin-bottom:6px;color:var(--white)}
+.service-desc{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
+
+/* UNITS TABLE */
+.units-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.units-table-wrap{overflow-x:auto;background:var(--white);border-radius:8px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{background:var(--gray-mid);padding:10px 14px;text-align:right;font-weight:600;font-size:13px;color:var(--charcoal);border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--charcoal);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--gray-bg)}
+
+/* PARTNERSHIP */
+.partner-types{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}
+.partner-type{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:24px;text-align:center;cursor:pointer;transition:all .2s}
+.partner-type:hover{border-color:var(--brick);transform:translateY(-2px)}
+.partner-type-icon{font-size:30px;margin-bottom:12px}
+.partner-type h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.partner-type p{font-size:13px;color:var(--gray-text);line-height:1.6}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.contact-item{display:flex;gap:14px;align-items:flex-start}
+.contact-item-icon{width:40px;height:40px;background:var(--brick);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:18px;flex-shrink:0}
+.contact-item h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.contact-item p,.contact-item a{font-size:13.5px;color:var(--gray-text);text-decoration:none;line-height:1.6}
+
+/* FORMS */
+.form-card{background:var(--white);border-radius:10px;border:1px solid var(--border);padding:28px;max-width:680px;margin:0 auto}
+.form-title{font-size:20px;font-weight:600;margin-bottom:6px}
+.form-subtitle{font-size:14px;color:var(--gray-text);margin-bottom:24px;line-height:1.6}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;font-weight:500;color:var(--charcoal)}
+.form-group input,.form-group select,.form-group textarea{padding:9px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s;background:var(--white);color:var(--charcoal)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--brick)}
+.form-group textarea{min-height:90px;resize:vertical}
+.form-notice{background:var(--gray-bg);border:1px solid var(--border);border-radius:6px;padding:12px 16px;font-size:12.5px;color:var(--gray-text);line-height:1.7;margin-bottom:16px}
+.form-notice strong{color:var(--charcoal)}
+.checkbox-group{display:flex;gap:8px;align-items:flex-start}
+.checkbox-group input[type=checkbox]{width:16px;height:16px;margin-top:3px;accent-color:var(--brick)}
+.checkbox-group label{font-size:13px;color:var(--gray-text);line-height:1.5}
+.success-msg{background:#E8F5E9;border:1px solid #C8E6C9;border-radius:8px;padding:20px 24px;text-align:center;color:#2E7D32;font-size:15px;font-weight:500;display:none}
+.success-msg.show{display:block}
+.upload-area{border:2px dashed var(--border);border-radius:6px;padding:20px;text-align:center;cursor:pointer;font-size:13px;color:var(--gray-text);transition:border-color .2s}
+.upload-area:hover{border-color:var(--brick);color:var(--brick)}
+
+/* FOOTER */
+.footer{background:var(--charcoal);color:rgba(255,255,255,.8);padding:32px 2rem}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+.footer-logo{font-size:18px;font-weight:600;color:var(--white);margin-bottom:8px}
+.footer-logo span{color:var(--gold);font-weight:300}
+.footer-desc{font-size:13px;color:rgba(255,255,255,.5);max-width:320px;line-height:1.7}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;cursor:pointer}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;font-size:12.5px;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.legal-notice{background:rgba(255,255,255,.05);border-radius:6px;padding:12px 16px;font-size:12px;color:rgba(255,255,255,.45);line-height:1.8;margin-top:16px}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--white);border-radius:12px;width:100%;max-width:760px;max-height:90vh;overflow-y:auto;animation:slideIn .25s ease}
+@keyframes slideIn{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--white);z-index:1}
+.modal-header h2{font-size:18px;font-weight:600}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray-text);line-height:1;padding:4px 8px}
+.modal-body{padding:24px}
+.proj-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.gallery-item{background:var(--gray-mid);border-radius:6px;height:100px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gray-text)}
+.proj-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.info-item{background:var(--gray-bg);border-radius:6px;padding:12px;font-size:13px}
+.info-item strong{display:block;font-size:12px;color:var(--gray-text);margin-bottom:2px;font-weight:500}
+.proj-notice{background:#FFF8E1;border:1px solid #FFE082;border-radius:6px;padding:12px 16px;font-size:12.5px;color:#6D4C00;line-height:1.7;margin-bottom:20px}
+
+/* MODAL UNITS TABLE */
+.modal-units{margin-top:16px}
+.modal-units h3{font-size:15px;font-weight:600;margin-bottom:12px}
+
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray-text);margin-bottom:24px;flex-wrap:wrap}
+.breadcrumb a{color:var(--brick);cursor:pointer;text-decoration:none}
+.breadcrumb span{color:var(--border)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{display:none}
+  .hero h1{font-size:26px}
+  .search-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .proj-gallery{grid-template-columns:1fr 1fr}
+}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px}
+.tab{padding:10px 20px;cursor:pointer;font-size:14px;color:var(--gray-text);border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tab.active{color:var(--brick);border-bottom-color:var(--brick);font-weight:500}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* HERO STATS */
+.hero-stats{display:flex;gap:32px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:28px;font-weight:600;color:var(--gold)}
+.hero-stat-label{font-size:13px;opacity:.7}
+
+/* PAGE HERO */
+.page-hero{background:var(--brick);color:var(--white);padding:40px 2rem}
+.page-hero-inner{max-width:1200px;margin:0 auto}
+.page-hero h1{font-size:28px;font-weight:600;margin-bottom:8px}
+.page-hero p{font-size:15px;opacity:.8}
+</style>
+
+<div class="site" id="app">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('home')">البيت <span>الوثير</span></div>
+    <nav><ul class="nav">
+      <li><a onclick="showPage('home')">الرئيسية</a></li>
+      <li><a onclick="showPage('about')">من نحن</a></li>
+      <li><a onclick="showPage('projects')">المشاريع</a></li>
+      <li><a onclick="showPage('units')">الوحدات</a></li>
+      <li><a onclick="showPage('partnerships')">الشراكات</a></li>
+      <li><a onclick="showPage('services')">الخدمات</a></li>
+      <li><a onclick="showPage('contact')">تواصل معنا</a></li>
+    </ul></nav>
+    <div class="header-btns">
+      <button class="btn btn-outline btn-sm" onclick="openForm('interest')">سجل اهتمامك</button>
+      <button class="btn btn-primary btn-sm" onclick="openForm('land')">اعرض أرضك</button>
+    </div>
+  </div>
+</header>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>نطوّر مساحات عقارية<br>تعكس جودة الحياة</h1>
+      <p>حلول تطوير عقاري مبنية على فهم الاحتياج، وضوح العلاقة، وحوكمة التنفيذ.</p>
+      <div class="hero-btns">
+        <button class="btn btn-white" onclick="showPage('projects')">استعرض المشاريع</button>
+        <button class="btn btn-white-outline" onclick="openForm('interest')">سجل اهتمامك</button>
+        <button class="btn btn-white-outline" onclick="openForm('land')">اعرض أرضك أو فرصة تعاون</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">٣</div><div class="hero-stat-label">مشاريع في جازان</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">+٩٠</div><div class="hero-stat-label">وحدة مخططة</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">٦</div><div class="hero-stat-label">ركائز تشغيلية</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH BAR -->
+  <section class="search-section">
+    <div class="search-inner">
+      <div class="search-grid">
+        <div class="field"><label>المدينة</label>
+          <select id="s-city"><option value="">الكل</option><option>جازان</option></select>
+        </div>
+        <div class="field"><label>نوع المشروع</label>
+          <select id="s-ptype"><option value="">الكل</option><option>سكني</option><option>تجاري</option><option>مختلط</option></select>
+        </div>
+        <div class="field"><label>حالة المشروع</label>
+          <select id="s-pstatus"><option value="">الكل</option><option>قادم</option><option>تحت الدراسة</option></select>
+        </div>
+        <div class="field"><label>نوع الوحدة</label>
+          <select id="s-utype"><option value="">الكل</option><option>شقة</option><option>دوبلكس</option><option>مكتب</option><option>محل</option></select>
+        </div>
+        <div class="field"><label>عدد الغرف</label>
+          <select id="s-rooms"><option value="">الكل</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+        <div class="field"><label>السعر (ريال)</label>
+          <select id="s-price"><option value="">الكل</option><option>أقل من 500,000</option><option>500,000 - 1,000,000</option><option>أكثر من 1,000,000</option></select>
+        </div>
+        <div class="field" style="align-self:end">
+          <button class="btn btn-primary" style="width:100%;padding:9px" onclick="doSearch()">🔍 بحث</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT MINI -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="divider"></div>
+      <h2 class="section-title">من نحن</h2>
+      <p style="font-size:15px;color:var(--gray-text);max-width:750px;line-height:1.8;margin-bottom:24px">
+        شركة البيت الوثير للتطوير العقاري شركة سعودية تعمل في مجال التطوير العقاري وبناء الحلول العقارية المتكاملة، وتسعى إلى تطوير فرص عقارية تستجيب لاحتياج السوق، وتراعي طبيعة المكان، وتبني قيمة مستدامة للمستفيدين والشركاء والمجتمع.
+      </p>
+      <button class="btn btn-outline btn-sm" onclick="showPage('about')">اقرأ المزيد</button>
+      <div class="about-cards">
+        <div class="about-card"><h3>الرؤية</h3><p>تقديم حلول عقارية متكاملة تسهم في رفع جودة الحياة، وتعكس الهوية المحلية، وتواكب تطلعات السوق، وتبني قيمة مستدامة.</p></div>
+        <div class="about-card"><h3>الرسالة</h3><p>تطوير مشاريع وفرص عقارية تقوم على فهم الاحتياج، وحسن التخطيط، وكفاءة التنفيذ، ووضوح العلاقة مع الشركاء.</p></div>
+        <div class="about-card"><h3>الفلسفة</h3><p>المشروع الجيد لا يبدأ من شكل المبنى فقط، بل من فهم الحاجة التي يخدمها. التصميم المبني على فهم الاحتياج هو مبدؤنا الأساس.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section-mid">
+    <div class="section-inner">
+      <div class="divider"></div>
+      <h2 class="section-title">ركائزنا</h2>
+      <p class="section-subtitle">القيم التي تحكم عملنا وتشكّل قراراتنا</p>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon">⚖️</div><div class="value-title">الوضوح والحوكمة</div><div class="value-desc">شفافية في العلاقات والعقود وآليات اتخاذ القرار</div></div>
+        <div class="value-card"><div class="value-icon">🏡</div><div class="value-title">جودة الحياة</div><div class="value-desc">مشاريع تنعكس إيجاباً على تجربة المستفيد وبيئته</div></div>
+        <div class="value-card"><div class="value-icon">🌱</div><div class="value-title">الاستدامة وكفاءة الموارد</div><div class="value-desc">قرارات تبني قيمة طويلة الأمد وتُعنى بالكفاءة</div></div>
+        <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">الشراكات الموثوقة</div><div class="value-desc">علاقات قائمة على الوضوح والالتزام المتبادل</div></div>
+        <div class="value-card"><div class="value-icon">📐</div><div class="value-title">التصميم على الاحتياج</div><div class="value-desc">نبدأ من السؤال لا من الشكل</div></div>
+        <div class="value-card"><div class="value-icon">📋</div><div class="value-title">الالتزام النظامي</div><div class="value-desc">العمل ضمن الأطر التنظيمية وحماية حقوق الأطراف</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS PREVIEW -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="divider"></div>
+      <h2 class="section-title">المشاريع</h2>
+      <p class="section-subtitle">مشاريعنا الحالية والمستقبلية في جازان</p>
+      <div class="cards-grid" id="home-projects"></div>
+      <div style="text-align:center;margin-top:28px">
+        <button class="btn btn-outline" onclick="showPage('projects')">استعرض جميع المشاريع</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <div class="divider"></div>
+      <h2 class="section-title">خدماتنا</h2>
+      <p class="section-subtitle">نقدم منظومة متكاملة من الخدمات العقارية</p>
+      <div class="services-grid">
+        <div class="service-card"><div class="service-num">01</div><div class="service-title">التطوير العقاري</div><div class="service-desc">تطوير المشاريع السكنية والتجارية من الفكرة حتى التسليم</div></div>
+        <div class="service-card"><div class="service-num">02</div><div class="service-title">الإدارة الهندسية والتشغيلية</div><div class="service-desc">إدارة التنفيذ والمقاولين والجودة والتشغيل</div></div>
+        <div class="service-card"><div class="service-num">03</div><div class="service-title">الهيكلة والتصميم</div><div class="service-desc">هيكلة المشروع وتصميمه وفق الاحتياج والسوق</div></div>
+        <div class="service-card"><div class="service-num">04</div><div class="service-title">الدراسات والاستشارات</div><div class="service-desc">دراسات الجدوى الأولية وتحليل السوق والموقع</div></div>
+        <div class="service-card"><div class="service-num">05</div><div class="service-title">إدارة الشراكات</div><div class="service-desc">هيكلة فرص التعاون مع المستثمرين وملاك الأراضي</div></div>
+        <div class="service-card"><div class="service-num">06</div><div class="service-title">البيع والتأجير على الخارطة</div><div class="service-desc">عند استيفاء المتطلبات النظامية اللازمة كاملةً</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-mid">
+    <div class="section-inner" style="text-align:center;max-width:680px;margin:0 auto">
+      <div class="divider" style="margin:0 auto 24px"></div>
+      <h2 class="section-title">هل تملك أرضاً أو فرصة استثمارية؟</h2>
+      <p style="color:var(--gray-text);margin-bottom:28px;font-size:15px;line-height:1.8">نفتح باب التعاون مع المستثمرين، ملاك الأراضي، وشركاء التنفيذ وفق نماذج مرنة قائمة على وضوح المساهمة والحقوق.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="openForm('land')">اعرض أرضك</button>
+        <button class="btn btn-outline" onclick="openForm('partnership')">طلب شراكة أو استثمار</button>
+        <button class="btn btn-outline" onclick="showPage('partnerships')">اعرف أكثر</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+  <div class="page-hero"><div class="page-hero-inner">
+    <div class="breadcrumb"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>من نحن</span></div>
+    <h1>من نحن</h1>
+    <p>نعرّف بنفسنا من خلال ما نبنيه وكيف نبنيه</p>
+  </div></div>
+  <section class="section">
+    <div class="section-inner">
+      <div style="max-width:780px;margin-bottom:40px">
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:1.9;color:var(--gray-text);margin-bottom:20px">
+          شركة البيت الوثير للتطوير العقاري شركة سعودية تعمل في مجال التطوير العقاري وبناء الحلول العقارية المتكاملة، وتسعى إلى تطوير فرص عقارية تستجيب لاحتياج السوق، وتراعي طبيعة المكان، وتبني قيمة مستدامة للمستفيدين والشركاء والمجتمع.
+        </p>
+        <p style="font-size:15px;line-height:1.9;color:var(--gray-text)">
+          تنطلق الشركة من قناعة أن العقار ليس منتجاً مادياً فقط، بل أصل اقتصادي ومساحة حياة ومكوّن حضري ينعكس أثره على جودة الحياة وشكل المدينة وتجربة الإنسان.
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px">
+        <div style="background:var(--brick);color:var(--white);border-radius:10px;padding:28px">
+          <h3 style="font-size:18px;font-weight:600;margin-bottom:14px;color:var(--gold-light)">الرؤية</h3>
+          <p style="font-size:14.5px;opacity:.9;line-height:1.8">أن نقدم حلولًا عقارية متكاملة تسهم في رفع جودة الحياة، وتعكس الهوية المحلية، وتواكب تطلعات السوق، وتبني قيمة مستدامة للمستفيدين والشركاء والمجتمع.</p>
+        </div>
+        <div style="background:var(--charcoal);color:var(--white);border-radius:10px;padding:28px">
+          <h3 style="font-size:18px;font-weight:600;margin-bottom:14px;color:var(--gold-light)">الرسالة</h3>
+          <p style="font-size:14.5px;opacity:.9;line-height:1.8">نعمل على تطوير مشاريع وفرص عقارية تقوم على فهم الاحتياج، وحسن التخطيط، وكفاءة التنفيذ، ووضوح العلاقة مع الشركاء، بما يحقق قيمة عمرانية واقتصادية واجتماعية قابلة للاستمرار.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <h2 class="section-title" style="margin-bottom:8px">فلسفتنا</h2>
+      <p style="font-size:15px;color:var(--gray-text);max-width:750px;line-height:1.9;margin-bottom:36px">
+        نؤمن أن المشروع العقاري الجيد لا يبدأ من شكل المبنى فقط، بل من فهم الحاجة التي يخدمها المشروع. لذلك نبدأ بالسؤال عن المستفيد، والموقع، والطلب، والتكلفة، والمخاطر، وقابلية البيع أو التشغيل، قبل الانتقال إلى التصميم والتنفيذ. فالتصميم المبني على فهم الاحتياج هو مبدؤنا الأساس.
+      </p>
+
+      <div class="divider"></div>
+      <h2 class="section-title" style="margin-bottom:24px">ركائزنا وقيمنا</h2>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon">⚖️</div><div class="value-title">الوضوح والحوكمة</div><div class="value-desc">شفافية في العلاقات والعقود وآليات اتخاذ القرار</div></div>
+        <div class="value-card"><div class="value-icon">🏡</div><div class="value-title">جودة الحياة</div><div class="value-desc">مشاريع تنعكس إيجاباً على تجربة المستفيد وبيئته</div></div>
+        <div class="value-card"><div class="value-icon">🌱</div><div class="value-title">الاستدامة وكفاءة الموارد</div><div class="value-desc">قرارات تبني قيمة طويلة الأمد وتُعنى بالكفاءة</div></div>
+        <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">الشراكات الموثوقة</div><div class="value-desc">علاقات قائمة على الوضوح والالتزام المتبادل</div></div>
+        <div class="value-card"><div class="value-icon">📐</div><div class="value-title">التصميم على الاحتياج</div><div class="value-desc">نبدأ من السؤال لا من الشكل</div></div>
+        <div class="value-card"><div class="value-icon">📋</div><div class="value-title">الالتزام النظامي</div><div class="value-desc">العمل ضمن الأطر التنظيمية وحماية حقوق جميع الأطراف</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROJECTS PAGE -->
+<div class="page" id="page-projects">
+  <div class="page-hero"><div class="page-hero-inner">
+    <div class="breadcrumb"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>المشاريع</span></div>
+    <h1>المشاريع</h1>
+    <p>مشاريعنا الحالية والمستقبلية في منطقة جازان</p>
+  </div></div>
+  <section class="section">
+    <div class="section-inner">
+      <div class="proj-notice" style="background:#FFF8E1;border:1px solid #FFE082;border-radius:8px;padding:14px 18px;font-size:13px;color:#6D4C00;margin-bottom:28px;line-height:1.7">
+        <strong>تنبيه:</strong> المعلومات المعروضة تعريفية وقابلة للتحديث ولا تعد عرض بيع أو حجز أو التزامًا. لا يتم التسويق أو البيع على الخارطة إلا بعد استيفاء المتطلبات النظامية اللازمة.
+      </div>
+      <div class="cards-grid" id="projects-list"></div>
+    </div>
+  </section>
+</div>
+
+<!-- UNITS PAGE -->
+<div class="page" id="page-units">
+  <div class="page-hero"><div class="page-hero-inner">
+    <div class="breadcrumb"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>الوحدات</span></div>
+    <h1>الوحدات</h1>
+    <p>استعرض الوحدات المتاحة وصفّها حسب احتياجك</p>
+  </div></div>
+  <section class="section">
+    <div class="section-inner">
+      <div class="units-filters">
+        <select class="unit-filter" id="uf-proj" onchange="filterUnits()" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;background:var(--white)">
+          <option value="">كل المشاريع</option>
+          <option>واجهة الوثير السكنية</option>
+          <option>الوثير بزنس</option>
+        </select>
+        <select class="unit-filter" id="uf-type" onchange="filterUnits()" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;background:var(--white)">
+          <option value="">كل الأنواع</option>
+          <option>شقة</option>
+          <option>دوبلكس</option>
+          <option>مكتب</option>
+          <option>محل تجاري</option>
+        </select>
+        <select class="unit-filter" id="uf-rooms" onchange="filterUnits()" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;background:var(--white)">
+          <option value="">كل الغرف</option>
+          <option>2</option><option>3</option><option>4</option><option>5</option>
+        </select>
+        <select class="unit-filter" id="uf-status" onchange="filterUnits()" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;background:var(--white)">
+          <option value="">كل الحالات</option>
+          <option>متاح</option><option>قادم</option><option>محجوز</option>
+        </select>
+        <button class="btn btn-outline btn-sm" onclick="resetFilters()">إعادة تعيين</button>
+      </div>
+      <div id="units-count" style="font-size:13px;color:var(--gray-text);margin-bottom:12px"></div>
+      <div class="units-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>المشروع</th><th>رمز الوحدة</th><th>النوع</th><th>الدور</th>
+              <th>الغرف</th><th>المساحة م²</th><th>السعر التقريبي</th>
+              <th>الحالة</th><th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="units-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SERVICES PAGE -->
+<div class="page" id="page-services">
+  <div class="page-hero"><div class="page-hero-inner">
+    <div class="breadcrumb"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>الخدمات</span></div>
+    <h1>الخدمات</h1>
+    <p>منظومة متكاملة من الخدمات العقارية</p>
+  </div></div>
+  <section class="section">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+        <div class="card"><div class="card-body">
+          <div style="font-size:32px;margin-bottom:12px">🏗️</div>
+          <h3 class="card-title">التطوير العقاري</h3>
+          <p class="card-text">تطوير المشاريع السكنية والتجارية من مرحلة دراسة الفكرة والجدوى الأولية، وصولاً إلى التسليم والتشغيل.</p>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div style="font-size:32px;margin-bottom:12px">⚙️</div>
+          <h3 class="card-title">الإدارة الهندسية والتشغيلية</h3>
+          <p class="card-text">إدارة مراحل التنفيذ ومتابعة المقاولين والإشراف على الجودة وحسن التشغيل.</p>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div style="font-size:32px;margin-bottom:12px">📐</div>
+          <h3 class="card-title">الهيكلة والتصميم</h3>
+          <p class="card-text">هيكلة المشروع بما يتوافق مع الاحتياج والسوق وضوابط التصميم والتخطيط العمراني.</p>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div style="font-size:32px;margin-bottom:12px">📊</div>
+          <h3 class="card-title">الدراسات والاستشارات العقارية</h3>
+          <p class="card-text">دراسات جدوى أولية وتحليل للسوق والموقع والطلب لدعم قرار التطوير.</p>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div style="font-size:32px;margin-bottom:12px">🤝</div>
+          <h3 class="card-title">إدارة فرص الشراكات العقارية</h3>
+          <p class="card-text">هيكلة فرص التعاون مع المستثمرين وملاك الأراضي وشركاء التنفيذ وفق نماذج واضحة المساهمة والحقوق.</p>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div style="font-size:32px;margin-bottom:12px">📑</div>
+          <h3 class="card-title">البيع أو التأجير على الخارطة</h3>
+          <p class="card-text">التعامل مع نماذج البيع أو التأجير على الخارطة عند استيفاء المتطلبات النظامية اللازمة كاملةً.</p>
+          <div style="background:#FFF8E1;border-radius:4px;padding:8px 10px;font-size:12px;color:#6D4C00">تُفعَّل هذه الخدمة بعد استيفاء كامل المتطلبات التنظيمية</div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PARTNERSHIPS PAGE -->
+<div class="page" id="page-partnerships">
+  <div class="page-hero"><div class="page-hero-inner">
+    <div class="breadcrumb"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>الشراكات</span></div>
+    <h1>الشراكات والتعاون</h1>
+    <p>نماذج مرنة قائمة على الوضوح</p>
+  </div></div>
+  <section class="section">
+    <div class="section-inner">
+      <div style="max-width:720px;margin-bottom:36px">
+        <div class="divider"></div>
+        <p style="font-size:15px;color:var(--gray-text);line-height:1.9">
+          نفتح باب التعاون مع المستثمرين، ملاك الأراضي، شركاء التنفيذ، مقدمي الموارد والخدمات، وجهات التسويق، وفق نماذج مرنة تقوم على وضوح المساهمة، وضوح الحقوق، وضوح المخاطر، ووضوح آلية الخروج.
+        </p>
+      </div>
+      <div class="partner-types">
+        <div class="partner-type" onclick="openForm('partnership')">
+          <div class="partner-type-icon">💼</div>
+          <h3>أنا مستثمر</h3>
+          <p>أبحث عن فرص استثمارية عقارية وأرغب في التعاون مع شريك تطوير</p>
+          <button class="btn btn-primary btn-sm" style="margin-top:14px">سجل اهتمامك</button>
+        </div>
+        <div class="partner-type" onclick="openForm('land')">
+          <div class="partner-type-icon">🗺️</div>
+          <h3>أملك أرضاً</h3>
+          <p>لدي أرض وأبحث عن شريك تطوير لتطويرها وفق نموذج واضح</p>
+          <button class="btn btn-primary btn-sm" style="margin-top:14px">اعرض أرضك</button>
+        </div>
+        <div class="partner-type" onclick="openForm('partnership')">
+          <div class="partner-type-icon">🔧</div>
+          <h3>أقدم خدمة أو مورداً</h3>
+          <p>أعمل في مجال المقاولات أو التوريد أو الخدمات وأرغب في التعاون</p>
+          <button class="btn btn-outline btn-sm" style="margin-top:14px">تواصل معنا</button>
+        </div>
+        <div class="partner-type" onclick="openForm('interest')">
+          <div class="partner-type-icon">🏠</div>
+          <h3>أبحث عن وحدة</h3>
+          <p>أرغب في الاطلاع على الوحدات المتاحة وتسجيل اهتمامي</p>
+          <button class="btn btn-outline btn-sm" style="margin-top:14px">سجل اهتمامك</button>
+        </div>
+      </div>
+      <div class="about-cards" style="margin-top:36px">
+        <div class="about-card"><h3>وضوح المساهمة</h3><p>تحديد دور كل طرف ومساهمته بشكل واضح ومكتوب قبل أي التزام</p></div>
+        <div class="about-card"><h3>وضوح الحقوق</h3><p>تعريف حقوق كل طرف في المشروع والعوائد والإدارة وضمانات التنفيذ</p></div>
+        <div class="about-card"><h3>وضوح المخاطر</h3><p>تحديد المخاطر المحتملة وكيفية التعامل معها قبل الالتزام</p></div>
+        <div class="about-card"><h3>وضوح آلية الخروج</h3><p>تحديد آليات إنهاء الشراكة أو التصرف في الحصص بشكل منظم</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <div class="page-hero"><div class="page-hero-inner">
+    <div class="breadcrumb"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>تواصل معنا</span></div>
+    <h1>تواصل معنا</h1>
+    <p>نرحب بتواصلكم واستفساراتكم</p>
+  </div></div>
+  <section class="section">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="divider"></div>
+          <h2 class="section-title" style="margin-bottom:20px">قنوات التواصل</h2>
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div><h4>البريد العام</h4><p>info@albaitwatheer.com</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🎧</div>
+            <div><h4>العناية بالعملاء</h4><p>cs@albaitwatheer.com</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📝</div>
+            <div><h4>الشكاوى والاقتراحات</h4><p>feedback@albaitwatheer.com</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">💼</div>
+            <div><h4>التوظيف</h4><p>careers@albaitwatheer.com</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div><h4>واتساب</h4><p>للتواصل السريع عبر واتساب</p><a href="#" style="color:var(--brick);font-size:13px">ابدأ المحادثة</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div><h4>العنوان</h4><p>جازان — حي المطار — عمارة الجوهرة<br><span style="font-size:12px;color:var(--gray-text)">(بيانات مؤقتة قابلة للتحديث)</span></p></div>
+          </div>
+        </div>
+        <div>
+          <div class="form-card">
+            <h3 class="form-title">نموذج تواصل عام</h3>
+            <p class="form-subtitle">أرسل لنا استفسارك وسيتواصل معك فريقنا قريباً</p>
+            <div id="contact-success" class="success-msg">✅ تم إرسال رسالتك بنجاح. سيتواصل معك فريقنا قريباً.</div>
+            <div id="contact-form">
+              <div class="form-group"><label>الاسم الكامل *</label><input type="text" placeholder="أدخل اسمك الكامل"></div>
+              <div class="form-group"><label>رقم الجوال *</label><input type="tel" placeholder="05xxxxxxxx"></div>
+              <div class="form-group"><label>البريد الإلكتروني</label><input type="email" placeholder="example@email.com"></div>
+              <div class="form-group"><label>موضوع التواصل</label>
+                <select><option>استفسار عام</option><option>مشاريع ووحدات</option><option>شراكة واستثمار</option><option>شكوى أو اقتراح</option><option>توظيف</option></select>
+              </div>
+              <div class="form-group"><label>الرسالة *</label><textarea placeholder="اكتب رسالتك هنا..."></textarea></div>
+              <button class="btn btn-primary" style="width:100%;padding:12px;font-size:15px" onclick="submitForm('contact')">إرسال</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">البيت <span>الوثير</span></div>
+        <p class="footer-desc">شركة سعودية للتطوير العقاري تسعى إلى بناء قيمة مستدامة للمستفيدين والشركاء والمجتمع.</p>
+      </div>
+      <div class="footer-links">
+        <a onclick="showPage('about')">من نحن</a>
+        <a onclick="showPage('projects')">المشاريع</a>
+        <a onclick="showPage('units')">الوحدات</a>
+        <a onclick="showPage('services')">الخدمات</a>
+        <a onclick="showPage('contact')">تواصل معنا</a>
+      </div>
+      <div class="footer-links" style="flex-direction:column;gap:8px">
+        <a>سياسة الخصوصية</a>
+        <a>شروط الاستخدام</a>
+        <a>تنبيه قانوني</a>
+      </div>
+    </div>
+    <div class="legal-notice">
+      <strong>تنبيه قانوني:</strong> المعلومات المعروضة في هذا الموقع تعريفية وقابلة للتحديث. لا تعد الأسعار أو المساحات أو حالات الوحدات التزاماً نهائياً إلا بموجب عقد أو عرض رسمي معتمد. لا يتم التسويق أو الحجز أو البيع على الخارطة إلا بعد استيفاء المتطلبات النظامية اللازمة. نماذج الاهتمام لا تعد حجزاً أو قبولاً أو التزاماً. لا يستقبل الموقع مبالغ أو مدفوعات.
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 شركة البيت الوثير للتطوير العقاري — جميع الحقوق محفوظة</span>
+      <span>جازان، المملكة العربية السعودية</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<div class="wa-float" title="واتساب">💬</div>
+
+<!-- MODALS -->
+<div class="modal-bg" id="modal-project">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-proj-title">تفاصيل المشروع</h2>
+      <button class="modal-close" onclick="closeModal('project')">✕</button>
+    </div>
+    <div class="modal-body" id="modal-proj-body"></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-interest">
+  <div class="modal">
+    <div class="modal-header"><h2>سجل اهتمامك</h2><button class="modal-close" onclick="closeModal('interest')">✕</button></div>
+    <div class="modal-body">
+      <div id="interest-success" class="success-msg">✅ تم تسجيل اهتمامك بنجاح. سيتواصل معك فريقنا قريباً.</div>
+      <div id="interest-form-wrap">
+        <p class="form-subtitle" style="margin-bottom:20px">نماذج الاهتمام لا تعد حجزاً أو قبولاً أو التزاماً.</p>
+        <div class="form-grid">
+          <div class="form-group"><label>الاسم الكامل *</label><input type="text" placeholder="أدخل اسمك"></div>
+          <div class="form-group"><label>رقم الجوال *</label><input type="tel" placeholder="05xxxxxxxx"></div>
+          <div class="form-group"><label>البريد الإلكتروني</label><input type="email" placeholder="example@email.com"></div>
+          <div class="form-group"><label>المدينة</label><input type="text" placeholder="مدينتك"></div>
+          <div class="form-group"><label>نوع الاهتمام</label>
+            <select><option>شراء وحدة سكنية</option><option>شراء وحدة تجارية</option><option>استئجار</option><option>استثمار</option><option>شراكة</option></select>
+          </div>
+          <div class="form-group"><label>المشروع</label>
+            <select><option value="">أي مشروع</option><option>واجهة الوثير السكنية</option><option>الوثير بارك</option><option>الوثير بزنس</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>ملاحظات</label><textarea placeholder="أي تفاصيل إضافية..."></textarea></div>
+        <div class="checkbox-group" style="margin-bottom:16px">
+          <input type="checkbox" id="priv1">
+          <label for="priv1">أوافق على سياسة الخصوصية وأن بياناتي ستُستخدم للتواصل فقط</label>
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="submitForm('interest')">تسجيل الاهتمام</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-land">
+  <div class="modal">
+    <div class="modal-header"><h2>اعرض أرضك أو فرصة تطوير</h2><button class="modal-close" onclick="closeModal('land')">✕</button></div>
+    <div class="modal-body">
+      <div id="land-success" class="success-msg">✅ تم استلام بياناتك. سيتواصل معك فريقنا لمناقشة الفرصة.</div>
+      <div id="land-form-wrap">
+        <p class="form-subtitle" style="margin-bottom:20px">شاركنا تفاصيل أرضك أو فرصة التطوير وسنتواصل معك لدراستها.</p>
+        <div class="form-grid">
+          <div class="form-group"><label>الاسم الكامل *</label><input type="text" placeholder="أدخل اسمك"></div>
+          <div class="form-group"><label>رقم الجوال *</label><input type="tel" placeholder="05xxxxxxxx"></div>
+          <div class="form-group"><label>المدينة *</label><input type="text" placeholder="مدينة الأرض"></div>
+          <div class="form-group"><label>موقع الأرض</label><input type="text" placeholder="الحي / المنطقة"></div>
+          <div class="form-group"><label>المساحة التقريبية م²</label><input type="number" placeholder="مثال: 1000"></div>
+          <div class="form-group"><label>نوع الملكية</label>
+            <select><option>ملكية فردية</option><option>ملكية مشتركة</option><option>وقف</option><option>أخرى</option></select>
+          </div>
+          <div class="form-group"><label>هل يوجد صك؟</label>
+            <select><option>نعم</option><option>لا</option><option>قيد الإصدار</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>ملاحظات إضافية</label><textarea placeholder="أي تفاصيل عن الأرض أو توقعاتك..."></textarea></div>
+        <div class="upload-area" style="margin-bottom:16px" onclick="alert('رفع الملفات سيكون متاحاً في النسخة النهائية')">
+          📎 إرفاق صورة الصك أو موقع الأرض (PDF/صورة) — واجهة فقط في هذا النموذج
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="submitForm('land')">إرسال</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-partnership">
+  <div class="modal">
+    <div class="modal-header"><h2>طلب شراكة أو استثمار</h2><button class="modal-close" onclick="closeModal('partnership')">✕</button></div>
+    <div class="modal-body">
+      <div id="partnership-success" class="success-msg">✅ تم استلام طلبك. سيتواصل معك فريقنا لمناقشة فرصة التعاون.</div>
+      <div id="partnership-form-wrap">
+        <div class="form-notice"><strong>إقرار:</strong> المعلومات المقدمة في هذا النموذج أولية ولا تعد التزاماً أو عرضاً رسمياً من أي طرف.</div>
+        <div class="form-grid">
+          <div class="form-group"><label>نوع الشريك *</label>
+            <select><option>مستثمر مالي</option><option>مالك أرض</option><option>شريك تنفيذي</option><option>مقدم موارد وخدمات</option><option>جهة تسويق</option></select>
+          </div>
+          <div class="form-group"><label>حجم الاستثمار التقريبي (اختياري)</label>
+            <select><option value="">غير محدد</option><option>أقل من مليون</option><option>1-5 مليون</option><option>5-20 مليون</option><option>أكثر من 20 مليون</option></select>
+          </div>
+          <div class="form-group"><label>مصدر التمويل (اختياري)</label>
+            <select><option value="">غير محدد</option><option>تمويل ذاتي</option><option>تمويل بنكي</option><option>شراكة مع آخرين</option></select>
+          </div>
+          <div class="form-group"><label>مجال الاهتمام</label>
+            <select><option>سكني</option><option>تجاري</option><option>مختلط</option><option>مفتوح</option></select>
+          </div>
+          <div class="form-group"><label>الاسم *</label><input type="text" placeholder="اسمك الكامل"></div>
+          <div class="form-group"><label>الجوال *</label><input type="tel" placeholder="05xxxxxxxx"></div>
+        </div>
+        <div class="form-group"><label>ملاحظات</label><textarea placeholder="شاركنا أي تفاصيل عن فرصة التعاون..."></textarea></div>
+        <div class="checkbox-group" style="margin-bottom:16px">
+          <input type="checkbox" id="priv2">
+          <label for="priv2">أقر بأن المعلومات المقدمة أولية ولا تعد التزاماً أو عرضاً رسمياً</label>
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="submitForm('partnership')">إرسال الطلب</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const projects=[
+  {id:1,name:"واجهة الوثير السكنية",city:"جازان",status:"قادم",type:"سكني",units:48,badge:"badge-amber",desc:"مشروع سكني متكامل يضم شققاً ودوبلكسات بتصاميم عصرية تلائم احتياجات الأسرة السعودية.",img:"card-img-1",imgLabel:"صورة تعريفية — واجهة المشروع",features:["48 وحدة سكنية","شقق ودوبلكسات","مواقف سيارات","مناطق مشتركة"]},
+  {id:2,name:"الوثير بارك",city:"جازان",status:"تحت الدراسة",type:"مجتمع سكني",units:null,badge:"badge-blue",desc:"مشروع مجتمعي سكني متكامل تحت الدراسة، يستهدف إنشاء بيئة سكنية عائلية متكاملة الخدمات.",img:"card-img-2",imgLabel:"صورة تعريفية — مجتمع سكني",features:["تحت الدراسة","مجتمع سكني متكامل","خدمات وأنشطة","مساحات مفتوحة"]},
+  {id:3,name:"الوثير بزنس",city:"جازان",status:"قادم",type:"تجاري",units:24,badge:"badge-amber",desc:"مشروع تجاري يضم مكاتب ومحلات تجارية في موقع استراتيجي بجازان.",img:"card-img-3",imgLabel:"صورة تعريفية — مبنى تجاري",features:["24 وحدة تجارية","مكاتب ومحلات","موقع استراتيجي","بنية تحتية حديثة"]}
+];
+
+const allUnits=[
+  {proj:"واجهة الوثير السكنية",code:"WS-A01",type:"شقة",floor:"الأول",rooms:3,area:120,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"واجهة الوثير السكنية",code:"WS-A02",type:"شقة",floor:"الأول",rooms:2,area:95,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"واجهة الوثير السكنية",code:"WS-B01",type:"شقة",floor:"الثاني",rooms:4,area:150,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"واجهة الوثير السكنية",code:"WS-B02",type:"شقة",floor:"الثاني",rooms:3,area:125,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"واجهة الوثير السكنية",code:"WS-D01",type:"دوبلكس",floor:"الثالث-الرابع",rooms:5,area:220,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"واجهة الوثير السكنية",code:"WS-D02",type:"دوبلكس",floor:"الثالث-الرابع",rooms:5,area:230,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"واجهة الوثير السكنية",code:"WS-G01",type:"شقة",floor:"الأرضي",rooms:3,area:130,price:"يحدد لاحقاً",status:"محجوز"},
+  {proj:"الوثير بزنس",code:"WB-OF01",type:"مكتب",floor:"الأول",rooms:"-",area:65,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"الوثير بزنس",code:"WB-OF02",type:"مكتب",floor:"الأول",rooms:"-",area:80,price:"يحدد لاحقاً",status:"قادم"},
+  {proj:"الوثير بزنس",code:"WB-SH01",type:"محل تجاري",floor:"الأرضي",rooms:"-",area:45,price:"يحدد لاحقاً",status:"متاح"},
+  {proj:"الوثير بزنس",code:"WB-SH02",type:"محل تجاري",floor:"الأرضي",rooms:"-",area:50,price:"يحدد لاحقاً",status:"متاح"},
+  {proj:"الوثير بزنس",code:"WB-SH03",type:"محل تجاري",floor:"الأرضي",rooms:"-",area:38,price:"يحدد لاحقاً",status:"محجوز"},
+];
+
+let filteredUnits=[...allUnits];
+
+function renderProjectCard(p,showFull){
+  const statusBadge=p.status==="قادم"?"badge-amber":p.status==="تحت الدراسة"?"badge-blue":"badge-green";
+  return `<div class="card">
+    <div class="card-img ${p.img}">
+      <div style="text-align:center;padding:20px">
+        <div style="font-size:40px;margin-bottom:8px">🏢</div>
+        <div style="font-size:13px;color:var(--gray-text)">${p.imgLabel}</div>
+      </div>
+      <div class="card-img-label">${p.city}</div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">${p.name}</h3>
+      <div class="card-meta">
+        <span class="badge ${statusBadge}">${p.status}</span>
+        <span class="badge badge-gray">${p.type}</span>
+        ${p.units?`<span class="badge badge-brick">${p.units} وحدة</span>`:'<span class="badge badge-gray">يحدد لاحقاً</span>'}
+      </div>
+      <p class="card-text">${p.desc}</p>
+      <div class="card-btns">
+        <button class="btn btn-primary btn-sm" onclick="openProjectModal(${p.id})">تفاصيل المشروع</button>
+        <button class="btn btn-outline btn-sm" onclick="openForm('interest')">سجل اهتمامك</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderProjects(){
+  const hp=document.getElementById('home-projects');
+  const pp=document.getElementById('projects-list');
+  if(hp)hp.innerHTML=projects.map(p=>renderProjectCard(p,false)).join('');
+  if(pp)pp.innerHTML=projects.map(p=>renderProjectCard(p,true)).join('');
+}
+
+function renderUnits(data){
+  const tbody=document.getElementById('units-tbody');
+  if(!tbody)return;
+  const count=document.getElementById('units-count');
+  if(count)count.textContent=`عرض ${data.length} من ${allUnits.length} وحدة`;
+  if(!data.length){tbody.innerHTML='<tr><td colspan="9" style="text-align:center;padding:28px;color:var(--gray-text)">لا توجد نتائج تطابق الفلاتر المختارة</td></tr>';return;}
+  const statusBadge={متاح:'badge-green',قادم:'badge-amber',محجوز:'badge-blue',مباع:'badge-gray'};
+  tbody.innerHTML=data.map(u=>`<tr>
+    <td>${u.proj}</td><td style="font-family:monospace;font-size:12.5px">${u.code}</td>
+    <td>${u.type}</td><td>${u.floor}</td><td style="text-align:center">${u.rooms}</td>
+    <td style="text-align:center">${u.area}</td><td>${u.price}</td>
+    <td><span class="badge ${statusBadge[u.status]||'badge-gray'}">${u.status}</span></td>
+    <td><button class="btn btn-outline btn-sm" onclick="openForm('interest')" style="font-size:11.5px;padding:4px 10px">اهتمام</button></td>
+  </tr>`).join('');
+}
+
+function filterUnits(){
+  const proj=document.getElementById('uf-proj').value;
+  const type=document.getElementById('uf-type').value;
+  const rooms=document.getElementById('uf-rooms').value;
+  const status=document.getElementById('uf-status').value;
+  filteredUnits=allUnits.filter(u=>
+    (!proj||u.proj===proj)&&
+    (!type||u.type===type)&&
+    (!rooms||u.rooms==rooms)&&
+    (!status||u.status===status)
+  );
+  renderUnits(filteredUnits);
+}
+
+function resetFilters(){
+  ['uf-proj','uf-type','uf-rooms','uf-status'].forEach(id=>{document.getElementById(id).value='';});
+  filteredUnits=[...allUnits];
+  renderUnits(filteredUnits);
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active')});
+  const pg=document.getElementById('page-'+id);
+  if(pg){pg.classList.add('active');window.scrollTo(0,0);}
+  if(id==='projects')renderProjects();
+  if(id==='units'){renderUnits(allUnits);}
+}
+
+function openProjectModal(id){
+  const p=projects.find(x=>x.id===id);
+  if(!p)return;
+  document.getElementById('modal-proj-title').textContent=p.name;
+  const projUnits=allUnits.filter(u=>u.proj===p.name);
+  const statusBadge={متاح:'badge-green',قادم:'badge-amber',محجوز:'badge-blue'};
+  document.getElementById('modal-proj-body').innerHTML=`
+    <div class="proj-notice">${p.name==="الوثير بارك"?'هذا المشروع تحت الدراسة وتفاصيله قابلة للتغيير.':''}المعلومات المعروضة تعريفية وقابلة للتحديث ولا تعد عرض بيع أو حجز أو التزامًا.</div>
+    <div class="proj-gallery">
+      ${[1,2,3].map(n=>`<div class="gallery-item">📸 صورة ${n>1?'داخلية':'الواجهة'}</div>`).join('')}
+    </div>
+    <div class="proj-info-grid">
+      <div class="info-item"><strong>المدينة</strong>${p.city}</div>
+      <div class="info-item"><strong>حالة المشروع</strong><span class="badge ${p.badge}">${p.status}</span></div>
+      <div class="info-item"><strong>نوع المشروع</strong>${p.type}</div>
+      <div class="info-item"><strong>عدد الوحدات</strong>${p.units?p.units+' وحدة':'يحدد لاحقاً'}</div>
+    </div>
+    <h3 style="font-size:15px;font-weight:600;margin-bottom:10px">الميزات الرئيسية</h3>
+    <ul style="padding-right:20px;font-size:14px;color:var(--gray-text);line-height:2;margin-bottom:20px">
+      ${p.features.map(f=>`<li>${f}</li>`).join('')}
+    </ul>
+    ${projUnits.length?`<div class="modal-units"><h3>وحدات المشروع</h3>
+      <div class="units-table-wrap"><table>
+        <thead><tr><th>الرمز</th><th>النوع</th><th>الدور</th><th>الغرف</th><th>المساحة</th><th>الحالة</th></tr></thead>
+        <tbody>${projUnits.map(u=>`<tr><td style="font-family:monospace;font-size:12.5px">${u.code}</td><td>${u.type}</td><td>${u.floor}</td><td style="text-align:center">${u.rooms}</td><td style="text-align:center">${u.area} م²</td><td><span class="badge ${statusBadge[u.status]||'badge-gray'}">${u.status}</span></td></tr>`).join('')}</tbody>
+      </table></div></div>`:''}
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="openForm('interest')">سجل اهتمامك بهذا المشروع</button>
+      <button class="btn btn-outline" onclick="closeModal('project')">إغلاق</button>
+    </div>
+  `;
+  document.getElementById('modal-project').classList.add('open');
+}
+
+function openForm(type){
+  document.querySelectorAll('.modal-bg').forEach(m=>m.classList.remove('open'));
+  document.getElementById('modal-'+type).classList.add('open');
+}
+
+function closeModal(id){
+  document.getElementById('modal-'+id).classList.remove('open');
+}
+
+function submitForm(id){
+  const s=document.getElementById(id+'-success');
+  const f=document.getElementById(id+'-form-wrap')||document.getElementById(id+'-form');
+  if(s)s.classList.add('show');
+  if(f)f.style.display='none';
+}
+
+function doSearch(){
+  showPage('units');
+  setTimeout(()=>{
+    const ptype=document.getElementById('s-ptype').value;
+    const rooms=document.getElementById('s-rooms').value;
+    if(ptype){const sel=document.getElementById('uf-type');if(sel){sel.value=ptype==='سكني'?'شقة':ptype==='تجاري'?'مكتب':''}}
+    if(rooms){const sel=document.getElementById('uf-rooms');if(sel)sel.value=rooms;}
+    filterUnits();
+  },100);
+}
+
+document.querySelectorAll('.modal-bg').forEach(bg=>{
+  bg.addEventListener('click',function(e){if(e.target===this){const id=this.id.replace('modal-','');closeModal(id);}});
+});
+
+renderProjects();
+renderUnits(allUnits);
+</script>
+
+</body>
+</html>
